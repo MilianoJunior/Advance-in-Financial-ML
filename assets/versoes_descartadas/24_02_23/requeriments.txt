@@ -1,0 +1,3 @@
+# py -m pip install -r requirements.txt
+# C:\Users\miliano\Documents\02 - projetos pessoais\codigos\robo_trader\ambiente\Scripts\python.exe
+tensorflow==2.9.1
