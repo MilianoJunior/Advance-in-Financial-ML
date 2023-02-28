@@ -57,3 +57,38 @@ composicao = {
         'help':'depois que o modelo é implantado em um ambiente de negociação ao vivo, é importante monitorar seu desempenho em tempo real e fazer ajustes e atualizações conforme necessário. O monitoramento e a manutenção contínua ajudam a garantir que o modelo continue a fazer previsões precisas e que o sistema de negociação funcione sem problemas',
        }
 }
+
+metatrader_methods = {
+    'initialize': 'Estabelece a conexão com o terminal MetaTrader 5',
+    'login': 'Conecta-se a uma conta de negociação com os parâmetros especificados',
+    'shutdown': 'Fecha a conexão estabelecida anteriormente com o terminal MetaTrader 5',
+    'version': 'Retorna a versão do terminal MetaTrader 5',
+    'last_error': 'Retorna informações sobre o último erro',
+    'account_info': 'Obtém informações atuais sobre a conta de negociação',
+    'terminal_info': 'Obtém o estado e os parâmetros do terminal MetaTrader 5 conectado',
+    'symbols_total': 'Obtém o número total de instrumentos financeiros no terminal MetaTrader 5',
+    'symbols_get': 'Obtém todos os instrumentos financeiros do terminal MetaTrader 5',
+    'symbol_info': 'Obtém informações sobre o instrumento financeiro especificado',
+    'symbol_info_tick': 'Obtém o último tick do instrumento financeiro especificado',
+    'symbol_select': 'Seleciona o símbolo na janela MarketWatch ou remove o símbolo deste janela',
+    'market_book_add': 'Faz com que o terminal MetaTrader 5 receba eventos sobre mudanças no livro de ofertas para o símbolo especificado',
+    'market_book_get': 'Retorna uma tupla desde BookInfo contendo os registros do livro de ofertas para o símbolo especificado',
+    'market_book_release': 'Cancela a subscrição do terminal MetaTrader 5 para receber eventos sobre alterações no livro de ofertas para o símbolo especificado',
+    'copy_rates_from': 'Recebe barras do terminal MetaTrader 5, a partir da data especificada',
+    'copy_rates_from_pos': 'Recebe barras do terminal MetaTrader 5, a partir do índice especificado',
+    'copy_rates_range': 'Recebe barras a partir do terminal MetaTrader 5, no intervalo de datas especificado',
+    'copy_ticks_from': 'Recebe ticks do terminal MetaTrader 5, a partir da data especificada',
+    'copy_ticks_range': 'Recebe ticks a partir do terminal MetaTrader 5, no intervalo de datas especificado',
+    'orders_total': 'Obtém o número de ordens ativas',
+    'orders_get': 'Obtém ordens ativas com a capacidade de filtrar por símbolo ou ticket',
+    'order_calc_margin': 'Retorna o tamanho da margem na moeda da conta para a operação de negociação especificada',
+    'order_calc_profit': 'Retorna o valor do lucro na moeda da conta para a operação de negociação especificada',
+    'order_check': 'Verifica que há fundos suficientes para realizar a operação de negociação requerida',
+    'order_send': 'Envia do terminal para o servidor de negociação uma solicitação para concluir uma operação de negociação',
+    'positions_total': 'Obtém o número de posições abertas',
+    'positions_get': 'Obtém posições abertas com a capacidade de filtrar por símbolo ou bilhete',
+    'history_orders_total': 'Obtém o número de ordens no histórico de negociação no intervalo especificado',
+    'history_orders_get': 'Obtém ordens do histórico de negociação com a capacidade de filtrar por bilhete ou posiçãocapitalize',
+    'history_deals_total':'Obtém o número de transações no histórico de negociação no intervalo especificado',
+    'history_deals_get':'Obtém transações do histórico de negociação com a capacidade de filtrar por bilhete ou posição'
+    }

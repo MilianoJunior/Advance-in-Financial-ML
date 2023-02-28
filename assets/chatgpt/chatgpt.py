@@ -1,12 +1,7 @@
-import pandas as pd
-from datetime import datetime
-import numpy as np
-import MetaTrader5 as mt5
-import pytz
-from tabulate import tabulate
-import inspect
-
-
+# -*- coding: utf-8 -*-
+"""
+consider a classe:
+<code>
 class Dados():
     def __init__(self, user: str, password: str):
         self.conectar(user, password)
@@ -25,45 +20,16 @@ class Dados():
     
             return True
         except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
+            return f"Error: {inspect.currentframe().f_code.co_name}, {e}"
     
     def get_profit(self):
         try:
-            print('------------------------------')
-            print('Informações da Conta')
-            print('------------------------------')
             account_info = mt5.account_info()._asdict()
             my_list = list(account_info.items())
             print(tabulate(my_list, headers=['nome','valor'], tablefmt="grid"))
             return account_info
         except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
-        
-    def get_symbol_info(self, symbol):
-        try:
-            print('------------------------------')
-            print('Informaçãoes do Simbolo')
-            print('------------------------------')
-            symbol_info = mt5.symbol_info(symbol)
-            symbol_info = symbol_info._asdict()
-            my_list = list(symbol_info.items())
-            print(tabulate(my_list, headers=['nome','valor'], tablefmt="grid"))
-            return symbol_info
-        except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
-        
-    def get_symbol_book(self, symbol):
-        try:
-            print('------------------------------')
-            print('Profudindade do Mercado')
-            print('------------------------------')
-            symbol_book = mt5.market_book_add(symbol)._asdict()
-            my_list = list(symbol_book.items())
-            print(tabulate(my_list, headers=['nome','valor'], tablefmt="grid"))
-            return symbol_book
-        except Exception as e:
-            print(f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}")
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
+            return f"Error: {inspect.currentframe().f_code.co_name}, {e}"
     
     def get_symbols(self, search:str=''):
         try:
@@ -74,7 +40,7 @@ class Dados():
                 if (search in ticket):
                     print(index, ticket)
         except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
+            return f"Error: {inspect.currentframe().f_code.co_name}, {e}"
 
     def get_ticks(self,symbol: str, start_day: int,end_day ,month: int,year: int):
         '''
@@ -106,7 +72,7 @@ class Dados():
             # ticks_.set_index('time',inplace=True)
             return ticks_
         except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
+            return f"Error: {inspect.currentframe().f_code.co_name}, {e}"
     
     def convert_time(self):
         '''
@@ -123,17 +89,7 @@ class Dados():
             self.base1['Day sin'] = np.sin(timestamp_s * (2 * np.pi / day))
             self.base1['Day cos'] = np.cos(timestamp_s * (2 * np.pi / day))
         except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
-        
-    def select_symbol(self, symbol):
-        try:
-            selected=mt5.symbol_select(symbol,True)
-            if not selected:
-                print("Failed to select EURCAD, error code =",mt5.last_error())
-            self.get_symbol_info(symbol)
-
-        except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
+            return f"Error: {inspect.currentframe().f_code.co_name}, {e}"
 
     def comprar(self, symbol, volume):
         try:
@@ -156,7 +112,7 @@ class Dados():
             else:
                 print("Compra de", volume, "de", symbol, "realizada com sucesso")
         except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
+            return f"Error: {inspect.currentframe().f_code.co_name}, {e}"
 
     def vender(self, symbol, volume):
         try:
@@ -179,17 +135,44 @@ class Dados():
             else:
                 print("Venda de", volume, "de", symbol, "realizada com sucesso")
         except Exception as e:
-            return f"Error: {inspect.currentframe().f_code.co_name}, {e},\n {mt5.last_error()}"
-            
-# testes
+            return f"Error: {inspect.currentframe().f_code.co_name}, {e}"
+<code>
 
-if __name__ == '__main__':
-    
-    login = '1603115'
-    password = '2718lej@JR'
-    symbol = 'WINJ23'
-    conexao = Dados(login, password)
-    conexao.get_symbols(symbol)
-    conexao.get_profit()
-    conexao.get_symbol_info(symbol)
-    conexao.get_symbol_book(symbol)
+
+complete a classe com o dict para gerar novos métodos:
+    metatrader_methods = {
+        'initialize': 'Estabelece a conexão com o terminal MetaTrader 5',
+        'login': 'Conecta-se a uma conta de negociação com os parâmetros especificados',
+        'shutdown': 'Fecha a conexão estabelecida anteriormente com o terminal MetaTrader 5',
+        'version': 'Retorna a versão do terminal MetaTrader 5',
+        'last_error': 'Retorna informações sobre o último erro',
+        'account_info': 'Obtém informações atuais sobre a conta de negociação',
+        'terminal_info': 'Obtém o estado e os parâmetros do terminal MetaTrader 5 conectado',
+        'symbols_total': 'Obtém o número total de instrumentos financeiros no terminal MetaTrader 5',
+        'symbols_get': 'Obtém todos os instrumentos financeiros do terminal MetaTrader 5',
+        'symbol_info': 'Obtém informações sobre o instrumento financeiro especificado',
+        'symbol_info_tick': 'Obtém o último tick do instrumento financeiro especificado',
+        'symbol_select': 'Seleciona o símbolo na janela MarketWatch ou remove o símbolo deste janela',
+        'market_book_add': 'Faz com que o terminal MetaTrader 5 receba eventos sobre mudanças no livro de ofertas para o símbolo especificado',
+        'market_book_get': 'Retorna uma tupla desde BookInfo contendo os registros do livro de ofertas para o símbolo especificado',
+        'market_book_release': 'Cancela a subscrição do terminal MetaTrader 5 para receber eventos sobre alterações no livro de ofertas para o símbolo especificado',
+        'copy_rates_from': 'Recebe barras do terminal MetaTrader 5, a partir da data especificada',
+        'copy_rates_from_pos': 'Recebe barras do terminal MetaTrader 5, a partir do índice especificado',
+        'copy_rates_range': 'Recebe barras a partir do terminal MetaTrader 5, no intervalo de datas especificado',
+        'copy_ticks_from': 'Recebe ticks do terminal MetaTrader 5, a partir da data especificada',
+        'copy_ticks_range': 'Recebe ticks a partir do terminal MetaTrader 5, no intervalo de datas especificado',
+        'orders_total': 'Obtém o número de ordens ativas',
+        'orders_get': 'Obtém ordens ativas com a capacidade de filtrar por símbolo ou ticket',
+        'order_calc_margin': 'Retorna o tamanho da margem na moeda da conta para a operação de negociação especificada',
+        'order_calc_profit': 'Retorna o valor do lucro na moeda da conta para a operação de negociação especificada',
+        'order_check': 'Verifica que há fundos suficientes para realizar a operação de negociação requerida',
+        'order_send': 'Envia do terminal para o servidor de negociação uma solicitação para concluir uma operação de negociação',
+        'positions_total': 'Obtém o número de posições abertas',
+        'positions_get': 'Obtém posições abertas com a capacidade de filtrar por símbolo ou bilhete',
+        'history_orders_total': 'Obtém o número de ordens no histórico de negociação no intervalo especificado',
+        'history_orders_get': 'Obtém ordens do histórico de negociação com a capacidade de filtrar por bilhete ou posiçãocapitalize',
+        'history_deals_total':'Obtém o número de transações no histórico de negociação no intervalo especificado',
+        'history_deals_get':'Obtém transações do histórico de negociação com a capacidade de filtrar por bilhete ou posição'
+        }
+"""
+
