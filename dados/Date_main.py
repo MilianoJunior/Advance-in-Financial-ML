@@ -185,8 +185,8 @@ class Dados():
 
 if __name__ == '__main__':
     
-    login = '1603115'
-    password = '2718lej@JR'
+    login = '********'
+    password = '*********'
     symbol = 'WINJ23'
     conexao = Dados(login, password)
     conexao.get_symbols(symbol)
